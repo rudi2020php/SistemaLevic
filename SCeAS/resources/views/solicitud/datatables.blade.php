@@ -1,3 +1,4 @@
+@extends('adminlte::page')
 <!-- Dynamic Table Full -->
 <div class="block">
         <div class="block-content">

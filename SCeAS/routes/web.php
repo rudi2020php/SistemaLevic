@@ -29,3 +29,6 @@ Route::group(['prefix' => 'v1'], function(){
     
     Route::post('user/signin', ['uses' => 'App\Http\Controllers\AuthController@signin']);*/
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

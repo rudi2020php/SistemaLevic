@@ -50,7 +50,17 @@ class ControllerSolicitudes extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'dpto' => 'required'
+        ]);
+
+        $soli = new solicitudes();
+       $soli->name = $request->name;
+       $soli->dpto_id = $request->dpto;
+        $soli->save();
+
+        //return redirect()->route('persona.index');
     }
 
     /**
@@ -61,7 +71,9 @@ class ControllerSolicitudes extends Controller
      */
     public function show($id)
     {
-        //
+        $soli = solicitudes::find($id);
+    
+        //return view('show', compact('soli'));
     }
 
     /**
@@ -82,9 +94,18 @@ class ControllerSolicitudes extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, solicitudes $soli)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'dpto' => 'required'
+        ]);
+
+        $soli->name = $request->name;
+        $soli->dpto_id = $request->dpto;
+        $soli->save();
+
+        return redirect()->route('persona.index');
     }
 
     /**
@@ -93,8 +114,9 @@ class ControllerSolicitudes extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(solicitudes $soli)
     {
-        //
+        $soli->delete();
+        return redirect()->route('persona.index');
     }
 }
